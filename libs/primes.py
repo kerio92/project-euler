@@ -1,31 +1,25 @@
-import math
-def prime(hi):
-    primes=[2,3,5,7]
-    yield 2
-    yield 3
-    yield 5
-    yield 7
-    for n in range(8,hi):
-        upper=int(math.sqrt(n))
-        try:
-            for d in primes:
-                if d > upper:
-                    break
-                if not n%d:
-                    raise Exception
-            primes.append(n)
+import itertools
+
+def isprime(n, primes):
+    for p in primes:
+        if p ** 2 > n:
+            break
+        if n % p == 0:
+            return False
+    return True
+
+def primes():
+    primes = [2, 3, 5, 7]
+    yield from primes
+    for n in itertools.count(8)
+        if isprime(n, primes):
             yield n
-        except Exception:
-            continue
+            primes.append(n)
 
-def factorOut(num):
-    for d in prime(max(num,1000)):
-        if num == d:
-            return [num]
-        if not num % d:
-            retlist = factorOut(num//d)
-            retlist.append(d)
-            return retlist
-    return [num]
-
-
+def factors(n):
+    for d in primes():
+        if n == 1:
+            return
+        while n % d == 0:
+            yield d
+            n //= d
