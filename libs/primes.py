@@ -19,12 +19,9 @@ def prime(hi):
 def factorOut(num):
     for d in prime(max(num,1000)):
         if num == d:
-            print(repr(list(num)))
-            return list(num)
+            return [num]
         if not num % d:
-            print("Found factor ",d)
             retlist = factorOut(num//d)
-            print(repr(retlist))
             retlist.append(d)
             return retlist
     return [num]
