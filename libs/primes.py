@@ -6,9 +6,11 @@ def prime(hi):
     yield 5
     yield 7
     for n in range(8,hi):
-        upper=int(math.floor(math.sqrt(n)))
+        upper=int(math.sqrt(n))
         try:
-            for d in [i for i in primes if i <=upper+1]:
+            for d in primes:
+                if d > upper:
+                    break
                 if not n%d:
                     raise Exception
             primes.append(n)
